@@ -11,7 +11,10 @@
   <div class="orb orb-a"></div><div class="orb orb-b"></div>
   <main class="container">
     <header class="hero">
-      <div class="portal" aria-hidden="true"></div>
+      <div class="trio" aria-hidden="true"><div class="portal"></div>
+        <img data-decor class="av av-l" src="https://rickandmortyapi.com/api/character/avatar/2.jpeg" alt="">
+        <img data-decor class="av av-c" src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="">
+        <img data-decor class="av av-r" src="https://rickandmortyapi.com/api/character/avatar/3.jpeg" alt=""></div>
       <h1>Laboratorio multiversal</h1>
       <p>Busca personajes, ubicaciones y episodios de Rick and Morty, mide cada petición HTTP y compara async/await con promesas.</p>
     </header>
@@ -49,7 +52,7 @@
     <!-- 2. Métricas -->
     <section class="metrics" aria-live="polite">
       <article class="glass metric"><span>⚡ Código HTTP</span><strong id="mStatus">—</strong><small id="mStatusText">sin consulta</small></article>
-      <article class="glass metric"><span>⏱️ Latencia</span><strong id="mLatency">—</strong><small>milisegundos</small></article>
+      <article class="glass metric"><span>⏱️ Latencia</span><strong id="mLatency">—</strong><div class="meter"><i id="mBar"></i></div><small>milisegundos</small></article>
       <article class="glass metric"><span>📦 Content-Type</span><strong id="mType" class="small">—</strong><small>cabecera de respuesta</small></article>
       <article class="glass metric"><span>🎟️ RateLimit-Remaining</span><strong id="mRemaining" class="small">—</strong><small>peticiones restantes</small></article>
       <article class="glass metric"><span>⏳ RateLimit-Reset</span><strong id="mReset" class="small">—</strong><small>segundos al reinicio</small></article>

@@ -97,3 +97,39 @@ button.card { cursor: pointer; }
 @media (max-width: 760px) { .detail { grid-template-columns: 1fr; } .btn { width: 100%; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 .chip:disabled { opacity: .4; cursor: default; transform: none; border-color: var(--border); }
+
+/* ===== v2: más impacto visual ===== */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; opacity: .4; background-size: 620px 620px;
+  background-image: radial-gradient(1.5px 1.5px at 8% 18%, #fff, transparent), radial-gradient(1px 1px at 27% 62%, #fff, transparent), radial-gradient(1.5px 1.5px at 46% 12%, #cfe, transparent),
+  radial-gradient(1px 1px at 63% 78%, #fff, transparent), radial-gradient(1.5px 1.5px at 81% 36%, #fff, transparent), radial-gradient(1px 1px at 93% 88%, #cfe, transparent); }
+.hero h1 { background-size: 220% 100%; animation: shine 8s linear infinite; }
+@keyframes shine { to { background-position: 220% 0; } }
+.trio { position: relative; width: min(400px, 92vw); height: 180px; }
+.trio .portal { position: absolute; width: 210px; height: 210px; left: 50%; top: 50%; margin: -105px 0 0 -105px; }
+.av { position: absolute; border-radius: 50%; object-fit: cover; border: 3px solid var(--neon); box-shadow: 0 0 26px rgba(57,255,136,.55); background: #000; animation: float 5s ease-in-out infinite; }
+.av-c { width: 136px; height: 136px; left: 50%; top: 50%; margin: -68px 0 0 -68px; z-index: 2; animation-name: float-c; }
+.av-l { width: 96px; height: 96px; left: 4%; top: 42px; animation-delay: -1.5s; }
+.av-r { width: 96px; height: 96px; right: 4%; top: 42px; animation-delay: -3s; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+@keyframes float-c { 50% { transform: translateY(-8px) scale(1.04); } }
+.panel { border-top: 2px solid rgba(57,255,136,.55); }
+.metric { position: relative; overflow: hidden; }
+.metric::after { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, var(--neon), var(--cyan), var(--purple)); opacity: .8; }
+.meter { height: 6px; border-radius: 6px; background: rgba(0,0,0,.45); overflow: hidden; margin: .3rem 0 .2rem; }
+.meter i { display: block; height: 100%; width: 0; border-radius: 6px; transition: width .6s ease, background .3s; }
+.loading .tab-panel.active { opacity: 1; }
+.card.skeleton { height: 330px; pointer-events: none; background: linear-gradient(100deg, var(--glass) 30%, var(--glass-2) 50%, var(--glass) 70%); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+.grid .card:not(.skeleton) { animation: rise .5s both; animation-delay: calc(var(--i, 0) * 45ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+/* Tarjetas de personaje tipo póster */
+.card:has(img) { position: relative; }
+.card:has(img) img { aspect-ratio: 3/4; transition: transform .45s; }
+.card:has(img):hover img { transform: scale(1.07); }
+.card:has(img) .card-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.6rem 1rem 1rem; background: linear-gradient(to top, rgba(4,8,14,.96) 28%, rgba(4,8,14,.6) 68%, transparent); }
+.card:has(img) .card-body p { font-size: .8rem; color: #c9d6e8; }
+.card:hover { box-shadow: 0 0 0 1px var(--neon), 0 16px 40px rgba(57,255,136,.25); }
+.st-alive::before { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+.detail img { box-shadow: 0 0 0 3px var(--neon), 0 0 60px rgba(57,255,136,.35); }
+@media (max-width: 480px) { .trio { height: 150px; } .av-l, .av-r { width: 74px; height: 74px; } .av-c { width: 108px; height: 108px; margin: -54px 0 0 -54px; } .trio .portal { width: 170px; height: 170px; margin: -85px 0 0 -85px; } }
