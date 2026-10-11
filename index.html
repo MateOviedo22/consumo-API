@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio API Rick and Morty | Diseño de Sistemas de Internet</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="orb orb-a"></div><div class="orb orb-b"></div>
+  <main class="container">
+    <header class="hero">
+      <div class="portal" aria-hidden="true"></div>
+      <h1>Laboratorio multiversal</h1>
+      <p>Busca personajes, ubicaciones y episodios de Rick and Morty, mide cada petición HTTP y compara async/await con promesas.</p>
+    </header>
+
+    <!-- 1. Buscador -->
+    <section class="glass panel">
+      <form id="searchForm" class="form" autocomplete="off">
+        <label class="field">Recurso
+          <select id="mode">
+            <option value="character">Personajes</option>
+            <option value="location">Ubicaciones</option>
+            <option value="episode">Episodios</option>
+          </select>
+        </label>
+        <label class="field grow">Nombre (en inglés)<input id="name" type="text" placeholder="Ej. rick, earth, pilot" spellcheck="false"></label>
+        <label class="field" id="fieldStatus">Estado
+          <select id="status"><option value="">Todos</option><option value="alive">Vivo</option><option value="dead">Muerto</option><option value="unknown">Desconocido</option></select>
+        </label>
+        <button id="runBtn" class="btn" type="submit">Buscar</button>
+      </form>
+      <div class="examples">Prueba con:
+        <button class="chip" data-mode="character" data-name="rick" data-status="">🧪 Personajes: rick</button>
+        <button class="chip" data-mode="character" data-name="" data-status="alive">💚 Personajes vivos</button>
+        <button class="chip" data-mode="location" data-name="earth" data-status="">🌍 Ubicaciones: earth</button>
+        <button class="chip" data-mode="episode" data-name="pilot" data-status="">📺 Episodio: pilot</button>
+      </div>
+      <!-- 3. Interruptor async/await vs promesas -->
+      <div class="switch-row">
+        <span id="lblAsync" class="sw-label active">Opción A: Async/Await</span>
+        <label class="switch" aria-label="Cambiar mecanismo asíncrono"><input id="implSwitch" type="checkbox"><span class="slider"></span></label>
+        <span id="lblPromise" class="sw-label">Opción B: Promesas .then()</span>
+      </div>
+    </section>
+
+    <!-- 2. Métricas -->
+    <section class="metrics" aria-live="polite">
+      <article class="glass metric"><span>⚡ Código HTTP</span><strong id="mStatus">—</strong><small id="mStatusText">sin consulta</small></article>
+      <article class="glass metric"><span>⏱️ Latencia</span><strong id="mLatency">—</strong><small>milisegundos</small></article>
+      <article class="glass metric"><span>📦 Content-Type</span><strong id="mType" class="small">—</strong><small>cabecera de respuesta</small></article>
+      <article class="glass metric"><span>🎟️ RateLimit-Remaining</span><strong id="mRemaining" class="small">—</strong><small>peticiones restantes</small></article>
+      <article class="glass metric"><span>⏳ RateLimit-Reset</span><strong id="mReset" class="small">—</strong><small>segundos al reinicio</small></article>
+    </section>
+    <p class="note">Esta API no envía cabeceras de rate limit: su límite documentado es de 10.000 peticiones por día por IP, y al superarlo responde 429 durante 12 horas. El portal las muestra si algún día aparecen.</p>
+
+    <!-- 6. Errores -->
+    <div id="errorBox" class="alert" role="alert" hidden></div>
+
+    <!-- 5. Pestañas -->
+    <section class="glass viewer">
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" data-tab="card">🎴 Vista de tarjeta</button>
+        <button class="tab" role="tab" data-tab="code">💻 Código JS ejecutado</button>
+        <button class="tab" role="tab" data-tab="json">🧾 Respuesta JSON</button>
+      </div>
+      <div id="tab-card" class="tab-panel active"><p class="empty">Elige un ejemplo o escribe un nombre para abrir el portal.</p></div>
+      <div id="tab-code" class="tab-panel"><pre id="codeOut"></pre></div>
+      <div id="tab-json" class="tab-panel"><pre id="jsonOut">// Aún no hay respuesta.</pre></div>
+    </section>
+    <footer class="footer">Proyecto académico que usa los datos abiertos de rickandmortyapi.com. Rick and Morty pertenece a sus respectivos dueños; este sitio no está afiliado a la serie.</footer>
+  </main>
+</body>
+</html>
